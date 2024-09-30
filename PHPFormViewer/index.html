@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ski Form</title>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body data-new-gr-c-s-check-loaded="14.1198.0" data-gr-ext-installed="">
+        <h3>Send with: <span id="method">GET</span></h3>
+        <div id="getOrPost">
+            <input type="radio" name="send_method" id="get" value="GET" checked=""><label for="get">GET</label>
+            <input type="radio" name="send_method" id="post" value="POST"><label for="post">POST</label>
+        </div>
+        <h1>Ski Rentals</h1>
+    
+        <h2>Ski Form</h2>
+    
+            <form id="exForm" action="cool.php" method="GET">
+    
+            <fieldset><legend>Radio vs Checkbox</legend>
+                
+                <input type="radio" name="sport" id="rb1" value="ski">
+                <label for="rb1">Ski</label><br>
+                
+                <input type="radio" name="sport" id="rb2" value="snowboard">
+                <label for="rb2">Snowboard</label><br>
+    
+                <br>
+                
+                <input type="checkbox" name="whitesnow" id="cb1">
+                <label for="cb1">White Snow</label><br>
+                
+                <input type="checkbox" name="yellowsnow" id="cb3">
+                <label for="cb3">Yellow Snow</label><br>
+            </fieldset>
+            <br>
+            <fieldset><legend>Select vs Multiselect vs Number</legend>
+                <label for="resort">Resort:</label>
+                <select name="resort" id="resort">
+                    <optgroup label="Montana">
+                        <option value="Bridger Bowl">Bridger Bowl</option>
+                        <option value="Big Sky">Big Sky</option>
+                    </optgroup>
+                    <optgroup label="Colorado">
+                        <option value="Steamboat" selected="">Steamboat</option>
+                        <option value="Howelson Hill">Howelson Hill</option>
+                    </optgroup>
+                </select><br><br>
+    
+                <label for="Extra Gear">Extra Gear:</label>
+                <select name="extras[]" id="extras" size="2" multiple="">
+                    <option value="Grass Sticks Bamboo Poles">Grass Sticks Bamboo Poles</option>
+                    <option value="Harvest Skis">Harvest Skis</option>
+                    <option value="BYOS">Snow in a Jar</option>
+                </select><br>
+
+                <label for="quantity">Quantity (between 1 and 69):</label>
+                <input type="number" id="quantity" name="quantity" min="1" max="69">
+            </fieldset>
+
+    
+            
+
+            <br>
+            <input type="submit" value="Launch Snowfall">        
+            </form>
+            
+    
+    
+        <script>
+            // get the first (and only) form element; get it's value
+            const form = document.querySelector("form");
+    
+            // set GET or POST options
+            const radioButtons = document.querySelectorAll('input[name="send_method"]');
+            const method = document.getElementById("method");
+            let selectedValue;
+            const getOrPost = document.getElementById("getOrPost")
+            getOrPost.addEventListener("click", ()=> {
+                radioButtons.forEach(radioButton => {
+                    if (radioButton.checked) {
+                        method.innerHTML = radioButton.value;
+                        form.setAttribute("method", radioButton.value)
+                    }
+                })
+            })
+            
+            
+    
+            // get the input box element
+            const fvbox = document.getElementById("fv");
+            // on input, evaluate task...
+            fvbox.addEventListener("input", handleInput);
+    
+            function handleInput() {
+                // if it's there, change form action to input box string
+                if(fvbox.value != ""){
+                    form.setAttribute("action", fvbox.value)
+                }
+                else {
+                    fvdefault = "cool.php";
+                    form.setAttribute("action", fvdefault);
+                }
+            }
+        </script>
+    
+    
+    
+    </body>
+</html>
